@@ -17,6 +17,8 @@ jobs:
     services:
       postgres:
         image: postgres:14
+        ports:
+          - 5432:5432
         env:
           POSTGRES_PASSWORD: mostest
           POSTGRES_USER: mmuser
