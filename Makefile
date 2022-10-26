@@ -9,10 +9,10 @@ get-migrate:
 	&& which migrate
 
 up:
-	migrate -path db/migration -database "postgresql://mmuser:mostest@localhost:5432/my_bank" -verbose up
+	migrate -path db/migration -database "postgresql://mmuser:mostest@localhost:5432/my_bank?sslmode=disable&connect_timeout=10" -verbose up
 
 down:
-	migrate -path db/migration -database "postgresql://mmuser:mostest@localhost:5432/my_bank" -verbose down
+	migrate -path db/migration -database "postgresql://mmuser:mostest@localhost:5432/my_bank?sslmode=disable&connect_timeout=10" -verbose down
 
 sqlc:
 	sqlc generate
