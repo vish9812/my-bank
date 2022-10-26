@@ -35,6 +35,9 @@ jobs:
       with:
         go-version: 1.18
 
+    - name: Install migrate-cli
+      run: make get-migrate
+
     - name: Run migrations
       run: make up
 
