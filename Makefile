@@ -1,4 +1,4 @@
-.PHONY: psql up down sqlc test
+.PHONY: psql up down sqlc test server
 
 psql:
 	PGPASSWORD=mostest psql --host=localhost --dbname=my_bank --username=mmuser
@@ -19,3 +19,6 @@ sqlc:
 
 test:
 	go test -v -cover ./...
+
+server:
+	go run main.go
