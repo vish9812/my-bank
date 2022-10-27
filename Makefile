@@ -1,4 +1,4 @@
-.PHONY: psql up down sqlc test server
+.PHONY: psql up down sqlc test server mock
 
 psql:
 	PGPASSWORD=mostest psql --host=localhost --dbname=my_bank --username=mmuser
@@ -22,3 +22,6 @@ test:
 
 server:
 	go run main.go
+
+mock:
+	mockgen --package mockdb --destination db/mock/store.go github.com/vish9812/mybank/db/sqlc Store
