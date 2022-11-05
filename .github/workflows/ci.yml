@@ -20,8 +20,8 @@ jobs:
         ports:
           - 5432:5432
         env:
-          POSTGRES_PASSWORD: mostest
-          POSTGRES_USER: mmuser
+          POSTGRES_PASSWORD: secret
+          POSTGRES_USER: root
           POSTGRES_DB: my_bank
         options: >-
           --health-cmd pg_isready
@@ -41,7 +41,7 @@ jobs:
       run: make get-migrate
 
     - name: Run migrations
-      run: make up
+      run: make migrate-up-docker
 
     - name: Test
       run: make test
