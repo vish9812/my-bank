@@ -1,0 +1,29 @@
+version: '3.9'
+services:
+  postgres:
+    image: postgres:14-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=mmuser
+      - POSTGRES_PASSWORD=mostest
+      - POSTGRES_DB=my_bank
+  api:
+    build:
+      context: .
+      dockerfile: dockerfile
+    ports:
+      - "7070:7070"
+    environment:
+      - GIN_MODE=release
+      - SERVER_ADDRESS=0.0.0.0:7070
+      - DB_SOURCE=postgresql://mmuser:mostest@postgres:5432/my_bank?sslmode=disable&connect_timeout=10
+    depends_on:
+      - postgres
+    entrypoint:
+      [
+        "/app/wait-for.sh",
+        "postgres:5432",
+        "--",
+        "/app/start.sh"
+      ]
+    command: [ "/app/main" ]

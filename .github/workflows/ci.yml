@@ -35,13 +35,13 @@ jobs:
     - name: Set up Go
       uses: actions/setup-go@v3
       with:
-        go-version: 1.18
+        go-version: 1.19
 
     - name: Install migrate-cli
       run: make get-migrate
 
     - name: Run migrations
-      run: make up
+      run: make migrate-up
 
     - name: Test
       run: make test
