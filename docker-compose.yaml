@@ -4,8 +4,8 @@ services:
     image: postgres:14-alpine
     restart: always
     environment:
-      - POSTGRES_USER=root
-      - POSTGRES_PASSWORD=secret
+      - POSTGRES_USER=mmuser
+      - POSTGRES_PASSWORD=mostest
       - POSTGRES_DB=my_bank
   api:
     build:
@@ -16,7 +16,7 @@ services:
     environment:
       - GIN_MODE=release
       - SERVER_ADDRESS=0.0.0.0:7070
-      - DB_SOURCE=postgresql://root:secret@postgres:5432/my_bank?sslmode=disable&connect_timeout=10
+      - DB_SOURCE=postgresql://mmuser:mostest@postgres:5432/my_bank?sslmode=disable&connect_timeout=10
     depends_on:
       - postgres
     entrypoint:
