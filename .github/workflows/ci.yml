@@ -41,7 +41,7 @@ jobs:
       run: make get-migrate
 
     - name: Run migrations
-      run: make migrate-up-docker
+      run: make migrate-up
 
     - name: Test
       run: make test
