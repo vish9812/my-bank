@@ -21,16 +21,16 @@ migrate-down1:
 	migrate -path db/migration -database "postgresql://mmuser:mostest@localhost:5432/my_bank?sslmode=disable&connect_timeout=10" -verbose down 1
 
 migrate-up-docker:
-	migrate -path db/migration -database "postgresql://root:secret@postgres:5432/my_bank?sslmode=disable&connect_timeout=10" -verbose up
+	migrate -path db/migration -database "postgresql://root:secret@localhost:5432/my_bank?sslmode=disable&connect_timeout=10" -verbose up
 
 migrate-up1-docker:
-	migrate -path db/migration -database "postgresql://root:secret@postgres:5432/my_bank?sslmode=disable&connect_timeout=10" -verbose up 1
+	migrate -path db/migration -database "postgresql://root:secret@localhost:5432/my_bank?sslmode=disable&connect_timeout=10" -verbose up 1
 
 migrate-down-docker:
-	migrate -path db/migration -database "postgresql://root:secret@postgres:5432/my_bank?sslmode=disable&connect_timeout=10" -verbose down
+	migrate -path db/migration -database "postgresql://root:secret@localhost:5432/my_bank?sslmode=disable&connect_timeout=10" -verbose down
 
 migrate-down1-docker:
-	migrate -path db/migration -database "postgresql://root:secret@postgres:5432/my_bank?sslmode=disable&connect_timeout=10" -verbose down 1
+	migrate -path db/migration -database "postgresql://root:secret@localhost:5432/my_bank?sslmode=disable&connect_timeout=10" -verbose down 1
 
 sqlc:
 	sqlc generate
