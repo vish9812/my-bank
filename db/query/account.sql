@@ -19,8 +19,9 @@ FOR NO KEY UPDATE;
 -- name: GetAccounts :many
 SELECT *
 FROM accounts
+WHERE owner = $1
 ORDER BY id
-LIMIT $1 offset $2;
+LIMIT $2 offset $3;
 
 -- name: UpdateAccount :one
 UPDATE accounts

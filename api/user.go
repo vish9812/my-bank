@@ -2,12 +2,14 @@ package api
 
 import (
 	"database/sql"
+	"errors"
 	"net/http"
 	"time"
 
 	"github.com/gin-gonic/gin"
 	"github.com/lib/pq"
 	db "github.com/vish9812/mybank/db/sqlc"
+	"github.com/vish9812/mybank/token"
 	"github.com/vish9812/mybank/util"
 )
 
@@ -90,6 +92,13 @@ func (server *Server) getUser(ctx *gin.Context) {
 		}
 
 		ctx.JSON(http.StatusInternalServerError, errorResponse(err))
+		return
+	}
+
+	authPayload := ctx.MustGet(authorizationPayloadKey).(*token.Payload)
+	if user.Username != authPayload.Username {
+		err := errors.New("only allowed to get details of the authenticated user")
+		ctx.JSON(http.StatusForbidden, errorResponse(err))
 		return
 	}
 
